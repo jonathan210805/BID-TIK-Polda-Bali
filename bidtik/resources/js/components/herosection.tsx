@@ -6,15 +6,20 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-const Hero: React.FC = () => {
-    const heroImages = [
-        { src: '/polisi.jpeg', alt: 'Slide 1' },
-        { src: '/logo TIK baru.png', alt: 'Slide 2' },
-        { src: '/test.webp', alt: 'Slide 3' },
-    ];
+type HeroItem = {
+    id: number;
+    judul?: string | null;
+    deskripsi?: string | null;
+    img: string;
+};
 
+type HeroProps = {
+    heros: HeroItem[];
+};
+
+const Hero: React.FC<HeroProps> = ({ heros }) => {
     return (
-        <div className="h-[80vh] w-full">
+        <div className="relative h-[80vh] w-full">
             <Swiper
                 modules={[Autoplay, Navigation, Pagination]}
                 autoplay={{ delay: 4000, disableOnInteraction: false }}
@@ -23,13 +28,14 @@ const Hero: React.FC = () => {
                 loop
                 className="h-full w-full"
             >
-                {heroImages.map((item, index) => (
-                    <SwiperSlide key={index}>
-                        <div className="h-full w-full">
-                            <img src={item.src} alt={item.alt} className="h-full w-full object-contain" />
+                {heros.map((item) => (
+                    <SwiperSlide key={item.id}>
+                        <div className="relative h-full w-full">
+                            <img src={item.img} alt={item.judul || 'Hero Slide'} className="h-full w-full object-cover" />
                             {/* Overlay untuk teks */}
-                            <div className="absolute inset-0 flex items-center justify-center bg-black/40">
-                                <h1 className="text-3xl font-bold text-white md:text-5xl">Selamat Datang di Website TIK</h1>
+                            <div className="absolute inset-0 flex flex-col items-start justify-end bg-black/40 px-6 text-left">
+                                {item.judul && <h1 className="mb-4 text-3xl font-bold text-white md:text-5xl">{item.judul}</h1>}
+                                {item.deskripsi && <p className="max-w-2xl text-sm text-gray-200 md:text-lg">{item.deskripsi}</p>}
                             </div>
                         </div>
                     </SwiperSlide>

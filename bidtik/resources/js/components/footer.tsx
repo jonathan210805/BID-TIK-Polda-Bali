@@ -1,4 +1,3 @@
-// resources/js/components/Footer.tsx
 import React from 'react';
 import { FaFacebookF, FaInstagram, FaYoutube } from 'react-icons/fa';
 import { IoClose } from 'react-icons/io5';
@@ -8,7 +7,7 @@ const Footer: React.FC = () => {
     return (
         <footer className="bg-[#d2c0a0] p-6 text-black">
             <div className="mb-4 flex flex-col items-center justify-between md:flex-row">
-                {/* Left: Logo / Name */}
+                {/* Left: Name */}
                 <h2 className="text-lg font-bold">BID TIK POLDA BALI</h2>
 
                 {/* Right: Icons */}

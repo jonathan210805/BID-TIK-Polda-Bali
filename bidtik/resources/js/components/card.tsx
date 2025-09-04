@@ -1,3 +1,4 @@
+import { Link } from '@inertiajs/react';
 import { useState } from 'react';
 
 type CardProps = {
@@ -7,28 +8,23 @@ type CardProps = {
     day: string;
     date: string;
     time: string;
+    linkTo?: string;
 };
 
-export default function Card({ img, title, desc, day, date, time }: CardProps) {
+export default function Card({ img, title, desc, day, date, time, linkTo }: CardProps) {
     const [isExpanded, setIsExpanded] = useState(false);
 
-    const limit = 20; // maks 20 kata
+    const limit = 20;
     const words = desc.trim().split(/\s+/);
     const shouldTruncate = words.length > limit;
     const truncated = shouldTruncate ? words.slice(0, limit - 1).join(' ') + ' ' : desc;
 
-    return (
-        <div className="mx-auto min-h-[420px] w-[280px] overflow-hidden rounded-2xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-lg">
-            {/* Gambar */}
+    const cardContent = (
+        <div className="mx-auto flex min-h-[420px] w-[280px] flex-col overflow-hidden rounded-2xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-lg">
             <img src={img} alt={title} className="h-[250px] w-full object-cover" />
-
-            {/* Isi Card */}
-            <div className="flex flex-col p-4">
-                {/* Judul */}
+            <div className="flex flex-1 flex-col p-4">
                 <h3 className="line-clamp-2 text-lg font-bold text-gray-900">{title}</h3>
-
-                {/* Deskripsi */}
-                <p className="mt-2 text-sm text-gray-600">
+                <p className="mt-2 line-clamp-3 text-sm break-words text-gray-600">
                     {isExpanded || !shouldTruncate ? (
                         <>
                             {desc}{' '}
@@ -47,9 +43,7 @@ export default function Card({ img, title, desc, day, date, time }: CardProps) {
                         </>
                     )}
                 </p>
-
-                {/* Info tanggal */}
-                <div className="mt-3 flex justify-between text-xs font-semibold text-gray-500">
+                <div className="mt-auto flex justify-between text-xs font-semibold text-gray-500">
                     <span>{day}</span>
                     <span>{date}</span>
                     <span>{time} WITA</span>
@@ -57,4 +51,6 @@ export default function Card({ img, title, desc, day, date, time }: CardProps) {
             </div>
         </div>
     );
+
+    return linkTo ? <Link href={linkTo}>{cardContent}</Link> : cardContent;
 }

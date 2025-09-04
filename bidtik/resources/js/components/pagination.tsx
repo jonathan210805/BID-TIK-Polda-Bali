@@ -1,118 +1,99 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 interface PaginationProps {
+    currentPage: number;
     totalPages: number;
-    initialPage?: number;
+    onPageChange: (page: number) => void;
 }
 
-const Pagination: React.FC<PaginationProps> = ({ totalPages, initialPage = 1 }) => {
-    const [currentPage, setCurrentPage] = useState(initialPage);
-    const [showJump, setShowJump] = useState(false);
-    const [jumpInput, setJumpInput] = useState('');
-
-    const handlePageChange = (page: number) => {
-        if (page < 1 || page > totalPages) return;
-        setCurrentPage(page);
-    };
-
-    const handleJump = () => {
-        const pageNum = parseInt(jumpInput, 10);
-        if (!isNaN(pageNum)) {
-            handlePageChange(pageNum);
+const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPageChange }) => {
+    const generatePageNumbers = () => {
+        // Pastikan totalPages adalah angka yang valid sebelum melanjutkan
+        if (!totalPages || totalPages <= 0) {
+            return [];
         }
-        setShowJump(false);
-        setJumpInput('');
-    };
 
-    const renderPages = () => {
-        const pages: (number | string)[] = [];
-
+        // Jika total halaman sedikit (7 atau kurang), tampilkan semua
         if (totalPages <= 7) {
-            // Kalau halamannya sedikit, tampil semua
-            for (let i = 1; i <= totalPages; i++) pages.push(i);
-        } else {
-            if (currentPage <= 3) {
-                // Awal
-                pages.push(1, 2, 3, 4, '...', totalPages);
-            } else if (currentPage >= totalPages - 2) {
-                // Akhir
-                pages.push(1, '...', totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
-            } else {
-                // Tengah
-                pages.push(1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages);
-            }
+            return Array.from({ length: totalPages }, (_, i) => i + 1);
         }
 
-        return pages.map((p, idx) => {
-            if (p === '...') {
-                return (
-                    <button
-                        key={idx}
-                        onClick={() => setShowJump(true)}
-                        className="rounded border bg-gray-200 px-3 py-1 text-gray-600 hover:bg-gray-300"
-                    >
-                        ...
-                    </button>
-                );
-            }
+        // Jika halaman aktif ada di awal (halaman 1 sampai 4)
+        if (currentPage <= 4) {
+            return [1, 2, 3, 4, 5, '...', totalPages];
+        }
 
-            return (
-                <button
-                    key={p}
-                    onClick={() => handlePageChange(Number(p))}
-                    className={`rounded border px-3 py-1 transition ${
-                        currentPage === p ? 'border-blue-500 bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                    }`}
-                >
-                    {p}
-                </button>
-            );
-        });
+        // Jika halaman aktif ada di akhir (3 halaman terakhir)
+        if (currentPage >= totalPages - 3) {
+            return [1, '...', totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
+        }
+
+        // Default: Jika halaman aktif ada di tengah
+        // Menampilkan: 1, ..., [sebelumnya], [saat ini], [berikutnya], ..., [terakhir]
+        return [1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages];
     };
+
+    /**
+     * Fungsi yang mengatur ketika tombol '...' ditekan.
+
+     */
+    const handleJumpToPage = () => {
+        const pageString = prompt(`Lompat ke halaman (1 - ${totalPages}):`);
+        if (pageString) {
+            const page = parseInt(pageString, 10);
+            // Validasi input untuk memastikan nomor halaman valid
+            if (!isNaN(page) && page >= 1 && page <= totalPages) {
+                onPageChange(page);
+            } else {
+                alert('Nomor halaman tidak valid!');
+            }
+        }
+    };
+
+    const pageNumbers = generatePageNumbers();
 
     return (
-        <div className="flex items-center gap-2">
+        <div className="mt-10 flex items-center justify-center space-x-2">
+            {/* Tombol "Sebelumnya" */}
             <button
-                onClick={() => handlePageChange(currentPage - 1)}
+                onClick={() => onPageChange(Math.max(currentPage - 1, 1))}
                 disabled={currentPage === 1}
-                className="rounded border px-3 py-1 disabled:opacity-50"
+                className="rounded-md border px-3 py-1 text-gray-600 hover:bg-gray-100 disabled:opacity-50"
             >
-                Prev
+                «
             </button>
 
-            {renderPages()}
-
-            <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
-                className="rounded border px-3 py-1 disabled:opacity-50"
-            >
-                Next
-            </button>
-
-            {showJump && (
-                <div className="bg-opacity-40 fixed inset-0 flex items-center justify-center bg-black">
-                    <div className="space-y-3 rounded bg-white p-4 shadow-lg">
-                        <p className="font-semibold">Jump to page:</p>
-                        <input
-                            type="number"
-                            value={jumpInput}
-                            onChange={(e) => setJumpInput(e.target.value)}
-                            className="w-32 rounded border px-2 py-1"
-                            min={1}
-                            max={totalPages}
-                        />
-                        <div className="flex gap-2">
-                            <button onClick={handleJump} className="rounded bg-blue-500 px-3 py-1 text-white">
-                                Go
-                            </button>
-                            <button onClick={() => setShowJump(false)} className="rounded bg-gray-300 px-3 py-1">
-                                Cancel
-                            </button>
-                        </div>
-                    </div>
-                </div>
+            {/* Nomor Halaman */}
+            {pageNumbers.map((page, i) =>
+                page === '...' ? (
+                    // Mengatur tombol '...' untuk lompat ke halaman pilihan
+                    <button key={`ellipsis-${i}`} onClick={handleJumpToPage} className="rounded-md border px-3 py-1 text-gray-500 hover:bg-gray-100">
+                        ...
+                    </button>
+                ) : (
+                    // Jika item adalah nomor halaman
+                    <button
+                        key={page}
+                        onClick={() => onPageChange(Number(page))}
+                        className={`rounded-md border px-3 py-1 ${
+                            currentPage === page
+                                ? 'border-blue-600 bg-blue-600 text-white' // Style untuk halaman aktif
+                                : 'text-gray-600 hover:bg-gray-100' // Style untuk halaman tidak aktif
+                        }`}
+                    >
+                        {page}
+                    </button>
+                ),
             )}
+
+            {/* Tombol "Berikutnya" */}
+            <button
+                onClick={() => onPageChange(Math.min(currentPage + 1, totalPages))}
+                disabled={currentPage === totalPages}
+                className="rounded-md border px-3 py-1 text-gray-600 hover:bg-gray-100 disabled:opacity-50"
+            >
+                »
+            </button>
         </div>
     );
 };

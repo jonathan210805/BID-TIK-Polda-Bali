@@ -1,4 +1,3 @@
-// src/components/Navbar.jsx
 import { Link } from '@inertiajs/react';
 import { Home, Newspaper, Phone, User } from 'lucide-react';
 
@@ -7,20 +6,18 @@ export default function Navbar() {
         <nav className="sticky top-0 z-50 bg-[#d2c2a6] px-6 py-3 shadow-md">
             <div className="container mx-auto flex items-center justify-between">
                 {/* Logo dan Judul */}
-                <div className="flex items-center space-x-3">
-                    <img
-                        src="/logo TIK baru.png"
-                        alt="Logo"
-                        className="h-12 w-12" // ganti dengan path logo Anda di public
-                    />
+                <Link href="/" className="flex items-center space-x-3">
+                    <div className="flex items-center space-x-3">
+                        <img src="/logo TIK baru.png" alt="Logo" className="h-12 w-12" />
 
-                    <div className="flex flex-col leading-tight">
-                        <span className="text-lg font-bold tracking-wide text-black">
-                            TIK <span className="text-red-600">NEWS</span>
-                        </span>
-                        <span className="text-lg font-bold text-black">POLDA BALI</span>
+                        <div className="flex flex-col leading-tight">
+                            <span className="text-lg font-bold tracking-wide text-black">
+                                TIK <span className="text-red-600">NEWS</span>
+                            </span>
+                            <span className="text-lg font-bold text-black">POLDA BALI</span>
+                        </div>
                     </div>
-                </div>
+                </Link>
 
                 {/* Menu */}
                 <div className="flex space-x-6 font-medium text-black">
