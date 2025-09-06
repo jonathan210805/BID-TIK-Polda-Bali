@@ -45,7 +45,7 @@ const DetailBerita: React.FC<DetailBeritaProps> = ({ berita, relatedBerita }) =>
                     {/* Bagian Section Baca Juga */}
                     {relatedBerita.length > 0 && (
                         <section className="mt-12">
-                            <h2 className="mb-6 text-2xl font-bold">Baca Juga</h2>
+                            <h2 className="mb-6 text-2xl font-bold text-black">Baca Juga</h2>
                             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                                 {relatedBerita.map((news) => (
                                     <Link key={news.id} href={`/news/${news.id}`}>

@@ -19,7 +19,7 @@ interface Berita {
 
 // Prop Newspage
 interface NewspageProps {
-    allNews: Berita[]; // allNews adalah sebuah array dari objek Berita
+    allNews: Berita[]; // array objek berita
 }
 
 // Tipe Komponen Newspage
@@ -43,7 +43,7 @@ const Newspage: React.FC<NewspageProps> = ({ allNews }) => {
                 <Navbar />
 
                 <main className="mx-auto max-w-6xl flex-grow px-4 py-8">
-                    {/* Bungkus Highlight dengan Link */}
+                    {/* Link Highlight */}
                     {highlight && (
                         <Link href={`/news/${highlight.id}`}>
                             <div className="mb-10 flex justify-center">

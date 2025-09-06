@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaAward, FaBuilding, FaFacebookF, FaInstagram, FaShieldAlt, FaTwitter, FaYoutube } from 'react-icons/fa';
+import { FaAward, FaBuilding, FaInstagram, FaShieldAlt, FaTiktok, FaYoutube } from 'react-icons/fa';
 
 // Tipe data tab
 type ActiveTab = 'achievement' | 'polres' | 'social';
@@ -39,26 +39,20 @@ const socialMediaData = [
     {
         icon: <FaInstagram />,
         name: 'Instagram',
-        handle: '@divisihumaspolri',
-        url: 'https://www.instagram.com/divisihumaspolri/',
+        handle: '@bidtikpoldabali_',
+        url: 'https://www.instagram.com/bidtikpoldabali_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
     },
     {
-        icon: <FaFacebookF />,
-        name: 'Facebook',
-        handle: 'Divisi Humas Polri',
-        url: 'https://www.facebook.com/DivHumasPolri/',
-    },
-    {
-        icon: <FaTwitter />,
-        name: 'Twitter (X)',
-        handle: '@DivHumas_Polri',
-        url: 'https://twitter.com/DivHumas_Polri',
+        icon: <FaTiktok />,
+        name: 'Tiktok',
+        handle: '@bidtik_poldabali',
+        url: 'https://www.tiktok.com/@bidtik_poldabali',
     },
     {
         icon: <FaYoutube />,
         name: 'YouTube',
-        handle: 'DIVISI HUMAS POLRI',
-        url: 'https://www.youtube.com/c/DIVISIHUMASPOLRI',
+        handle: 'Bid TIK POLDA BALI',
+        url: 'https://www.youtube.com/@bidtikpoldabali',
     },
 ];
 
@@ -69,10 +63,10 @@ const InfoSection: React.FC = () => {
         switch (activeTab) {
             case 'achievement':
                 return (
-                    <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+                    <div className="mx-auto mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
                         {achievementData.map((item, index) => (
                             <div key={index} className="rounded-2xl border border-gray-100 bg-white p-6 shadow-lg transition-all hover:shadow-xl">
-                                <div className="mb-4 text-4xl text-blue-600">{item.icon}</div>
+                                <div className="mb-4 text-4xl text-[#193043]">{item.icon}</div>
                                 <h3 className="text-lg font-semibold text-gray-800">{item.title}</h3>
                                 <p className="mt-2 text-sm text-gray-600">{item.description}</p>
                             </div>
@@ -81,13 +75,13 @@ const InfoSection: React.FC = () => {
                 );
             case 'polres':
                 return (
-                    <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+                    <div className="mx-auto mt-8 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
                         {polresData.map((item, index) => (
                             <div
                                 key={index}
                                 className="flex items-center rounded-2xl border border-gray-100 bg-white p-4 shadow-md transition-all hover:shadow-xl"
                             >
-                                <div className="mr-3 text-2xl text-blue-500">{item.icon}</div>
+                                <div className="mr-3 text-2xl text-[#193043]">{item.icon}</div>
                                 <span className="font-medium text-gray-700">{item.name}</span>
                             </div>
                         ))}
@@ -95,7 +89,7 @@ const InfoSection: React.FC = () => {
                 );
             case 'social':
                 return (
-                    <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+                    <div className="mx-auto mt-8 grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-3">
                         {socialMediaData.map((item, index) => (
                             <a
                                 href={item.url}
@@ -104,7 +98,7 @@ const InfoSection: React.FC = () => {
                                 key={index}
                                 className="flex items-center rounded-2xl border border-gray-100 bg-white p-5 shadow-md transition-all hover:shadow-xl"
                             >
-                                <div className="mr-4 text-3xl text-blue-600">{item.icon}</div>
+                                <div className="mr-4 text-3xl text-[#193043]">{item.icon}</div>
                                 <div>
                                     <p className="font-semibold text-gray-800">{item.name}</p>
                                     <p className="text-sm text-blue-500">{item.handle}</p>
@@ -132,7 +126,7 @@ const InfoSection: React.FC = () => {
                     <button
                         onClick={() => setActiveTab('achievement')}
                         className={`rounded-full px-5 py-2 text-sm font-medium transition-all ${
-                            activeTab === 'achievement' ? 'bg-blue-600 text-white shadow' : 'text-gray-600 hover:text-blue-600'
+                            activeTab === 'achievement' ? 'bg-[#193043] text-white shadow' : 'text-gray-600 hover:text-[#193043]'
                         }`}
                     >
                         <FaAward className="mr-2 inline-block" /> Achievement
@@ -140,7 +134,7 @@ const InfoSection: React.FC = () => {
                     <button
                         onClick={() => setActiveTab('polres')}
                         className={`rounded-full px-5 py-2 text-sm font-medium transition-all ${
-                            activeTab === 'polres' ? 'bg-blue-600 text-white shadow' : 'text-gray-600 hover:text-blue-600'
+                            activeTab === 'polres' ? 'bg-[#193043] text-white shadow' : 'text-gray-600 hover:text-[#193043]'
                         }`}
                     >
                         <FaShieldAlt className="mr-2 inline-block" /> Polres Jajaran
@@ -148,7 +142,7 @@ const InfoSection: React.FC = () => {
                     <button
                         onClick={() => setActiveTab('social')}
                         className={`rounded-full px-5 py-2 text-sm font-medium transition-all ${
-                            activeTab === 'social' ? 'bg-blue-600 text-white shadow' : 'text-gray-600 hover:text-blue-600'
+                            activeTab === 'social' ? 'bg-[#193043] text-white shadow' : 'text-gray-600 hover:text-[#193043]'
                         }`}
                     >
                         <FaInstagram className="mr-2 inline-block" /> Media Sosial

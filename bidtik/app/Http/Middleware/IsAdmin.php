@@ -17,7 +17,7 @@ class IsAdmin
             return $next($request);
         }
 
-        return redirect('/'); // kalau bukan admin, tendang ke homepage
+        return redirect('/'); // jika bukan admin, di redirect ke homepage publik
     }
 }
 

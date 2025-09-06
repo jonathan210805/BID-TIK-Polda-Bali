@@ -31,16 +31,28 @@ const ProfilePage: React.FC = () => {
                             <Users className="h-8 w-8 text-red-600" />
                             <h2 className="text-2xl font-bold text-gray-800">Visi & Misi</h2>
                         </div>
-                        <p className="text-lg leading-relaxed text-gray-700">
-                            Visi kami adalah mewujudkan kepolisian yang modern, profesional, dan terpercaya melalui pemanfaatan teknologi informasi.{' '}
+                        <p className="text-lg leading-relaxed font-bold text-gray-700">
+                            Mewujudkan teknologi informasi dan komunikasi yang modern, terintegrasi, dan berdaya saing guna mendukung kegiatan
+                            Kepolisian di Wilayah Hukum Polda Bali dalam mewujudkan keamanan dan ketertiban masyarakat. <br />
                             <br />
-                            <br />
-                            Misi kami meliputi:
+                            Misi BID TIK Polda Bali
                         </p>
-                        <ul className="mt-6 list-disc space-y-3 pl-6 text-gray-700">
-                            <li>Meningkatkan sistem informasi yang handal dan aman</li>
-                            <li>Mendukung operasional kepolisian dengan solusi teknologi</li>
-                            <li>Meningkatkan pelayanan publik berbasis digital</li>
+                        <ul className="mt-6 list-disc space-y-3 pl-6 font-bold text-gray-700">
+                            <li>
+                                Modern. Satker Bid TIK Polda Bali melakukan modernisasi dalam rangka penyelenggaraan pembinaan teknologi informasi dan
+                                komunikasi kepolisian dalam rangka mendukung operasional Kepolisian, termasuk pemenuhan kebutuhan Almatsus yang makin
+                                modern;
+                            </li>
+                            <li>
+                                Handal. Satker Bid TIK Polda Bali, diharapkan memberikan dukungan teknis pembinaan dan penyelenggaraan sistem
+                                informasi yang tangguh, aman dan terpercaya serta dapat diandalkan;
+                            </li>
+                            <li>
+                                Terintegrasi. Satker Bid TIK Polda Bali dituntut untuk dapat menyelenggarakan pengembangan dan pembinaan sistem
+                                teknologi informasi dan komunikasi yang saling terkoneksi (interkoneksi) pada jaringan sistem CCTV instansi terkait
+                                antara lain jalan tol, Dishub dan Kominfo dengan RTMC Dit Lantas Polda Bali serta Command Center di seluruh Polres/ta
+                                Se-Bali melalui sistem kendali monitoring di Ruang Command Center Biro Ops Polda Bali.
+                            </li>
                         </ul>
                     </div>
                 </section>
@@ -56,7 +68,11 @@ const ProfilePage: React.FC = () => {
                             Struktur organisasi BID TIK Polda Bali dirancang untuk mendukung koordinasi yang efektif dan efisien. Berikut bagan
                             struktur organisasi:
                         </p>
-                        <img src="/struktur-bidtik.webp" alt="Struktur Organisasi BID TIK" className="mx-auto rounded-lg text-gray-700 shadow-md" />
+                        <img
+                            src="/struktur_organisasi_bid_tik.jpg"
+                            alt="Struktur Organisasi BID TIK"
+                            className="mx-auto rounded-lg text-gray-700 shadow-md"
+                        />
                     </div>
                 </section>
 
@@ -72,13 +88,13 @@ const ProfilePage: React.FC = () => {
                         </p>
                         <div className="space-y-4 text-gray-700">
                             <p>
-                                <strong>Alamat:</strong> Jl. WR Supratman, Denpasar, Bali
+                                <strong>Alamat:</strong> Jl. WR Supratman No.7, Sumerta Kauh, Kec. Denpasar Tim., Kota Denpasar, Bali 80236
                             </p>
                             <p>
-                                <strong>Telepon:</strong> (0361) 123456
+                                <strong>Telepon:</strong> (0361) 227711
                             </p>
                             <p>
-                                <strong>Email:</strong> info@bidtikpoldabali.go.id
+                                <strong>Email:</strong> emailtester@gmail.com
                             </p>
                         </div>
                     </div>

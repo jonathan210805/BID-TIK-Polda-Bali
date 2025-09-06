@@ -14,14 +14,16 @@ type Props = {
 };
 
 export default function AdminBeritaEdit({ berita, onSuccess }: Props) {
-    const { data, setData, put, processing, errors } = useForm<{
+    const { data, setData, post, processing, errors } = useForm<{
         judul: string;
         isi: string;
         gambar: File | null;
+        _method: 'PUT';
     }>({
         judul: berita.judul,
         isi: berita.isi,
         gambar: null,
+        _method: 'PUT',
     });
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -29,9 +31,9 @@ export default function AdminBeritaEdit({ berita, onSuccess }: Props) {
 
         const hasFile = data.gambar !== null;
 
-        put(`/admin/news/${berita.id}`, {
+        post(`/admin/news/${berita.id}`, {
             ...data,
-            forceFormData: hasFile,
+            forceFormData: hasFile, //===
             onSuccess: () => {
                 if (onSuccess) onSuccess();
             },

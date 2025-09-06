@@ -19,7 +19,7 @@ type HeroProps = {
 
 const Hero: React.FC<HeroProps> = ({ heros }) => {
     return (
-        <div className="relative h-[80vh] w-full">
+        <div className="relative h-[90vh] w-full">
             <Swiper
                 modules={[Autoplay, Navigation, Pagination]}
                 autoplay={{ delay: 4000, disableOnInteraction: false }}

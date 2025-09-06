@@ -4,6 +4,7 @@ use App\Http\Controllers\BeritaController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\HeroController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 /*
 |--------------------------------------------------------------------------
 | ROUTE PUBLIC
@@ -97,6 +98,13 @@ Route::prefix('admin')->group(function () {
     Route::get('/users', fn () => Inertia::render('AdminUsers'))->name('admin.users');
      Route::get('/hero', [HeroController::class, 'index'])->name('admin.hero');
     Route::post('/hero', [HeroController::class, 'store'])->name('admin.hero.store');
+
+    Route::get('/register', fn () => Inertia::render('auth/register'))->name('register');
+    //Route::get('/login', fn () => Inertia::render('auth/login'))->name('login');
+      Route::get('login', [AuthenticatedSessionController::class, 'create'])
+        ->name('login');
+
+    
 });
 
 require __DIR__.'/settings.php';
